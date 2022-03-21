@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 <block xmlns:th="http://www.w3.org/1999/xhtml">
+    <!-- 페이지 css/ js 추가 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <script th:src="@{/js/day.js}"></script>
+
     <table>
         <tr>
             <th>이름</th>
@@ -11,7 +17,26 @@
         </tr>
         <tr>
             <th>정보</th>
-            <td>정보~</td>
+            <td>
+                <!-- 리스트 -->
+                <div>
+                    <div id="list-table">
+
+                    </div>
+
+                </div>
+
+                <!-- 인풋 -->
+                <div class="inputWrapper">
+                    <div>
+                        <input type="text" class="mno" th:value="${date.id}">
+                        <input type="text" id="text" name="text" placeholder="정보를 입력해주세요">
+                    </div>
+                    <span class="addBtn" >추가하기</span><br/>
+                    <span class="check"></span>
+                </div>
+
+            </td>
         </tr>
     </table>
 </block>

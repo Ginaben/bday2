@@ -1,10 +1,14 @@
 package happy.bday2.dto;
 
+import happy.bday2.entity.BDay;
+import happy.bday2.entity.Info;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 import javax.validation.constraints.NotBlank;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -16,8 +20,13 @@ public class BDayDto {
     private String month;
     private String day;
 
+    private BDay bday;
+
+    private Long tid;
     @NotBlank
     private String text;
+
+    private List<Info> tmiList = new ArrayList<>();
 
     public BDayDto(){}
 
@@ -28,5 +37,16 @@ public class BDayDto {
         this.day = day;
     }
 
+//    public BDayDto(Info info) {
+//        this.tid = info.getId();
+//        this.text = info.getText();
+//        this.bday = info.getDay();
+//    }
+
+    public BDayDto(Long tid, String text, BDay bDay) {
+        this.tid = tid;
+        this.text = text;
+        this.bday = bDay;
+    }
 
 }

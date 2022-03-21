@@ -10,4 +10,7 @@ public interface BDayService {
 
     BDayDto getInfo(Long id);
 
-    }
+    Long addTMI(String text, Long id);
+
+
+}

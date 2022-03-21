@@ -9,18 +9,23 @@ import javax.persistence.*;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Info extends BaseTimeEntity{
+public class Info {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "tid")
     private Long id;
 
     @Lob
     private String text;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "info")
-//    private BDay bDay;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "day_id")
+    private BDay day;
 
 
+    public Info (String text, BDay day) {
+        this.text = text;
+        this.day = day;
+    }
 }

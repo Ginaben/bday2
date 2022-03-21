@@ -4,10 +4,11 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import static javax.persistence.CascadeType.*;
 
 @Entity
 @Getter
@@ -22,8 +23,8 @@ public class BDay extends BaseTimeEntity {
     private String month;
     private String day;
 
-//    @OneToMany(mappedBy = "bDay", cascade = {PERSIST, REMOVE}, orphanRemoval = true)
-//    private List<Info> infoList = new ArrayList<>();
+    @OneToMany(mappedBy = "day", cascade = ALL, orphanRemoval = true)
+    private List<Info> infoList = new ArrayList<>();
 
 
     public BDay(String name, String month, String day) {
