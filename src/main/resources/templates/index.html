@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<block xmlns:th="http://www.w3.org/1999/xhtml">
+
+    <form th:action="@{'/add'}" method="post" th:object="${day}">
+        <input type="text" th:field="*{month}" placeholder="월">
+        <input type="text" th:field="*{day}" placeholder="일">
+        <span><button>등록하기</button></span>
+    </form>
+
+
+    <table>
+    <tr>
+        <td>
+            <button th:onclick="|location.href='@{/register}'|">등록하기</button>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <input type="text" placeholder="월">
+            <input type="text" placeholder="일">
+            <span><button>등록하기</button></span>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <input type="text">
+            <button>검색하기</button>
+        </td>
+    </tr>
+</table>
+    <span th:onclick="|location.href='@{/detail}'|">detail</span>
+</block>
