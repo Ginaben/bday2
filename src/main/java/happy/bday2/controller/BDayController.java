@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -35,11 +37,24 @@ public class BDayController {
         return "index";
     }
 
-    //생일자 저장
+    //생일 저장
     @PostMapping("/add")
     public String addDay(@Validated @ModelAttribute("day") BDayDto dto, BindingResult bindingResult){
         Long id = service.save(dto.getName(), dto.getMonth(),dto.getDay());
         return "redirect:/detail/" + id;
+    }
+
+    //전체 삭제
+    @ResponseBody
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Long> remove(@PathVariable("id") Long id,
+                                       @ModelAttribute("day") BDayDto dto,
+                                       RequestPageSortDto requestPageDto, Model model,
+                                       SearchType searchType, String keyword) {
+        service.delete(id);
+
+        searchDayList(requestPageDto, model, searchType, keyword);
+        return new ResponseEntity<>(id, HttpStatus.OK);
     }
 
     //디테일
@@ -59,6 +74,7 @@ public class BDayController {
         return "detail";
     }
 
+    //tmi저장
     @PostMapping("/addTmi/{id}")
     public String addTmi(@PathVariable("id") Long id, Model model, HttpServletRequest request){
         String text = request.getParameter("text");
@@ -66,6 +82,22 @@ public class BDayController {
 
         return "detail :: #list-table";
     }
+
+    //tmi 삭제
+    @DeleteMapping("/deleteTmi/{tno}")
+    public String remove(@PathVariable("tno") Long tno, Model model,
+                         HttpServletRequest request, RequestPageSortDto requestPageDto) {
+        service.remove(tno);
+
+        Long id = Long.valueOf(request.getParameter("id"));
+
+        Pageable pageable = requestPageDto.getPageableSort();
+        model.addAttribute("tmi",service.getTmi(pageable, id));
+
+        return "detail :: #list-table";
+    }
+
+
 
     //검색
     @PostMapping({"","/"})
@@ -77,6 +109,7 @@ public class BDayController {
         return "redirect:/list";
     }
 
+    //검색 후 리스트
     @GetMapping("/list")
     public String list(RequestPageSortDto requestPageDto, Model model,
                        SearchType searchType, String keyword) {
@@ -98,5 +131,33 @@ public class BDayController {
                 model.addAttribute("search", service.searchDay(pageable, new SearchCondition(keyword, searchType)));
             }
     }
+
+    /*
+    //전체 삭제
+    @DeleteMapping("/delete/{id}")
+    public String remove(@PathVariable("id") Long id, @ModelAttribute("day") BDayDto dto,
+                            RequestPageSortDto requestPageDto, Model model,
+                            SearchType searchType, String keyword) {
+        service.delete(id);
+
+        searchDayList(requestPageDto, model, searchType, keyword);
+        return "index";
+    }
+*/
+
+    /*
+    @ResponseBody
+    @DeleteMapping("/deleteTmi/{tno}")
+    public ResponseEntity<Long> remove(@PathVariable("tno") Long tno, Model model,
+                                       @RequestBody BDayDto dto, RequestPageSortDto requestPageDto) {
+        service.remove(tno);
+
+        Pageable pageable = requestPageDto.getPageableSort();
+        model.addAttribute("tmi",service.getTmi(pageable, dto.getId()));
+
+        return new ResponseEntity<>(tno, HttpStatus.OK);
+    }
+*/
+
 
 }

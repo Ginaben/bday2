@@ -1,18 +1,34 @@
 <!DOCTYPE html>
 <block xmlns:th="http://www.w3.org/1999/xhtml">
+
+    <link th:href="@{/css/day.css}" rel="stylesheet"/>
+
     <div>
         <table>
-            <tr>
-                <th>이름</th>
-                <th>생월</th>
-                <th>생일</th>
+            <tr class="listTb">
+                <th class="listTh">이름</th>
+                <th class="listTh">생월</th>
+                <th class="listTh">생일</th>
             </tr>
 
-            <tr th:each="list: ${search}">
-                <td>[[${list.name}]]</td>
-                <td>[[${list.month}]]</td>
-                <td>[[${list.day}]]</td>
+            <tr th:each="list: ${search}" th:onclick="|javascript:goDetail('${list.id}')|"
+                class="listTb">
+                <td class="listTh">[[${list.name}]]</td>
+                <td class="listTh">[[${list.month}]]</td>
+                <td class="listTh">[[${list.day}]]</td>
             </tr>
         </table>
     </div>
+
+    <script th:inline="javascript">
+            function goDetail(id) {
+                /*[+
+                let url = [[@{/detail/}]] + id;
+                +]*/
+
+                location.href = url;
+            }
+
+        </script>
+
 </block>

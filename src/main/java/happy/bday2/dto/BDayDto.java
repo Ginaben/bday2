@@ -7,6 +7,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,13 +17,16 @@ import java.util.List;
 public class BDayDto {
     private Long id;
 
+    @NotNull
     private String name;
+    @NotNull
     private String month;
+    @NotNull
     private String day;
 
     private BDay bDay;
 
-    private Long tid;
+    private Long tno;
     @NotBlank
     private String text;
 
@@ -50,14 +54,14 @@ public class BDayDto {
 
     //tmi 리스트
 //    public BDayDto(Info info) {
-//        this.tid = info.getId();
+//        this.day.css = info.getId();
 //        this.text = info.getText();
 //        this.bDay = info.getBDay();
 //    }
 
     //tmi 리스트
-    public BDayDto(Long tid, String text, BDay bDay) {
-        this.tid = tid;
+    public BDayDto(Long tno, String text, BDay bDay) {
+        this.tno = tno;
         this.text = text;
         this.bDay = bDay;
     }

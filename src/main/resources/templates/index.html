@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <block xmlns:th="http://www.w3.org/1999/xhtml">
 
+    <link th:href="@{/css/day.css}" rel="stylesheet"/>
+
     <table>
 <!--    <tr>-->
 <!--        <td>-->
@@ -8,12 +10,12 @@
 <!--        </td>-->
 <!--    </tr>-->
 
-    <tr>
+    <tr class="inline" style="margin-bottom:20px;">
         <td>
             <form th:action="@{'/add'}" method="post" th:object="${day}">
-                <input type="text" th:field="*{name}" placeholder="이름">
-                <input type="text" th:field="*{month}" placeholder="월">
-                <input type="text" th:field="*{day}" placeholder="일">
+                <input type="text" class="idxInput" th:field="*{name}" placeholder="이름"><br>
+                <input type="text" class="idxInput" th:field="*{month}" placeholder="월"><br>
+                <input type="text" class="idxInput" th:field="*{day}" placeholder="일"><br>
                 <span><button>등록하기</button></span>
             </form>
         </td>
@@ -23,15 +25,15 @@
         <td>
             <div>
                 <form th:method="get" th:action="@{/list}">
-                    <select class="dropdown" name="searchType">
+                    <select class="dropdown inline" name="searchType">
                         <option th:each="searchType : ${T(happy.bday2.dto.search.SearchType).values()}"
                                 th:value="${searchType}" th:text="${searchType.searchName}"></option>
                     </select>
 
-                    <div class="search-bar">
+                    <div class="search-bar inline">
                         <input id="search-input" name="keyword" th:value="${keyword}">
                     </div>
-                    <button class="btn_search" type="submit">
+                    <button class="btn_search btn" type="submit">
                         검색하기
                     </button>
                 </form>

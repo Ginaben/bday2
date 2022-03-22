@@ -10,18 +10,26 @@ import org.springframework.data.domain.Slice;
 import java.util.List;
 
 public interface BDayService {
+    //이름생일저장
     Long save(String name, String month, String day);
-
+    //이름생일
     BDayDto getInfo(Long id);
-
+    //tmi저장
     Long addTmi(String text, Long id);
-
-//    List<BDayDto> getTmiById(Long id);
+    //tmi 리스트
     Slice<BDayDto> getTmi(Pageable pageable, Long id);
-
+    //검색
     Slice<BDayDto> searchDay(Pageable pageable, SearchCondition condition);
+    //tmi 삭제
+    void remove(Long tno);
+    //전체 삭제
+    void delete(Long id);
 
-        Long saveTest(BDay bDay);
+    //tmi 리스트
+//    List<BDayDto> getTmiById(Long id);
+
+    //test데이터
+    Long saveTest(BDay bDay);
     Long addTmiTest(Info info, Long id);
 
     }

@@ -8,44 +8,49 @@
 
     <link th:href="@{/css/day.css}" rel="stylesheet"/>
 
-
-    <table>
-        <tr>
-            <th class="tb inline">이름</th>
-            <td>[[${date.name}]]</td>
-        </tr>
-        <tr>
-            <th class="tb inline">생일</th>
-            <td>[[${date.month}]]월 [[${date.day}]]일</td>
-        </tr>
-        <tr>
-            <th class="tb inline">정보</th>
-            <td>
-                <!-- 리스트 -->
-                <div>
-                    <div id="list-table">
-                        <div th:each="tmi: ${tmi}">
-                            <span style="display: none;">[[${tmi.tid}]]</span>
-                            <span>[[${tmi.text}]]</span>
-                            <span style="display: none;">[[${tmi.bDay.month}]]</span>
-                            <span style="display: none;">[[${tmi.bDay.day}]]</span>
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <!-- 인풋 -->
-                <div class="inputWrapper">
+    <!-- 본문 시작 -->
+    <div class="detailWrapper">
+        <span id="id" style="display: none;">[[${date.id}]]</span>
+        <table>
+            <tr>
+                <th class="tb inline">이름</th>
+                <td>[[${date.name}]]</td>
+            </tr>
+            <tr>
+                <th class="tb inline">생일</th>
+                <td>[[${date.month}]]월 [[${date.day}]]일</td>
+            </tr>
+            <tr>
+                <th class="tb inline">정보</th>
+                <td>
+                    <!-- 리스트 -->
                     <div>
-                        <input type="hidden" class="mno" th:value="${date.id}">
-                        <input type="text" id="text" name="text" placeholder="정보를 입력해주세요">
+                        <div id="list-table" style="margin-top:8px;">
+                            <div th:each="tmi: ${tmi}">
+                                <span class="id" name="id" style="display: none;">[[${tmi.bDay.id}]]</span>
+                                <span class="tno" style="display: none;">[[${tmi.tno}]]</span>
+                                <span style="display: none;">[[${tmi.bDay.month}]]</span>
+                                <span style="display: none;">[[${tmi.bDay.day}]]</span>
+                                <span class="tmiText inline">[[${tmi.text}]]</span>
+                                <span class="deleteInfo smallLetter btn">삭제</span>
+                            </div>
+                        </div>
                     </div>
-                    <span class="addBtn inline">추가하기</span><br/>
-                    <span class="check inline"></span>
-                </div>
 
-            </td>
-        </tr>
-    </table>
+                    <!-- 인풋 -->
+                    <div class="inputWrapper">
+                        <div class="inline">
+                            <input type="hidden" class="mno" th:value="${date.id}">
+                            <input type="text" id="text" name="text" class="inline input" placeholder="정보를 입력해주세요">
+                        </div>
+                        <span class="addBtn inline btn">추가하기</span><br/>
+                        <span class="check inline"></span>
+                    </div>
+
+                </td>
+            </tr>
+        </table>
+
+        <span class="deleteAll btn">삭제하기</span>
+    </div>
 </block>

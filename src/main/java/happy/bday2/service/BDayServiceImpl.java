@@ -60,6 +60,18 @@ public class BDayServiceImpl implements BDayService{
         return repository.searchDay(pageable, condition);
     }
 
+    //tmi 삭제
+    @Override
+    public void remove(Long tno) {
+        infoRepository.deleteById(tno);
+    }
+
+    //전체 삭제
+    @Override
+    public void delete(Long id) {
+        repository.deleteById(id);
+    }
+
 
     //tmi 리스트
 /*
