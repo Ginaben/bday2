@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface InfoRepository extends JpaRepository<Info, Long>, InfoRepositoryCustom {
 
-    @Query("select tmi from Info tmi where tmi.day.id=:id")
-    List<Info> getTmi(@Param("id") Long id);
+//    @Query("select tmi from Info tmi where tmi.day.id=:id")
+//    List<Info> getTmi(@Param("id") Long id);
 }

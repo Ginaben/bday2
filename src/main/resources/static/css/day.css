@@ -1,0 +1,13 @@
+.inline {
+    display: inline-block;
+}
+
+.tb {
+    margin: 20px;
+}
+
+
+
+.addBtn:hover {
+    cursor: pointer;
+}

@@ -6,21 +6,30 @@
 
     <script th:src="@{/js/day.js}"></script>
 
+    <link th:href="@{/css/day.css}" rel="stylesheet"/>
+
+
     <table>
         <tr>
-            <th>이름</th>
+            <th class="tb inline">이름</th>
             <td>[[${date.name}]]</td>
         </tr>
         <tr>
-            <th>생일</th>
+            <th class="tb inline">생일</th>
             <td>[[${date.month}]]/[[${date.day}]]</td>
         </tr>
         <tr>
-            <th>정보</th>
+            <th class="tb inline">정보</th>
             <td>
                 <!-- 리스트 -->
                 <div>
                     <div id="list-table">
+                        <div th:each="tmi: ${tmi}">
+                            <span style="display: none;">[[${tmi.tid}]]</span>
+                            <span>[[${tmi.text}]]</span>
+                            <span style="display: none;">[[${tmi.bDay.month}]]</span>
+                            <span style="display: none;">[[${tmi.bDay.day}]]</span>
+                        </div>
 
                     </div>
 
@@ -29,11 +38,11 @@
                 <!-- 인풋 -->
                 <div class="inputWrapper">
                     <div>
-                        <input type="text" class="mno" th:value="${date.id}">
+                        <input type="hidden" class="mno" th:value="${date.id}">
                         <input type="text" id="text" name="text" placeholder="정보를 입력해주세요">
                     </div>
-                    <span class="addBtn" >추가하기</span><br/>
-                    <span class="check"></span>
+                    <span class="addBtn inline">추가하기</span><br/>
+                    <span class="check inline"></span>
                 </div>
 
             </td>

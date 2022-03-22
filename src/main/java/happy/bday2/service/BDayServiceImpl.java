@@ -7,6 +7,8 @@ import happy.bday2.repository.BDayRepository;
 import happy.bday2.repository.InfoRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,18 +22,6 @@ public class BDayServiceImpl implements BDayService{
     private final BDayRepository repository;
     private final InfoRepository infoRepository;
 
-//    @Override
-//    public List<BDayDto> getTmiById(Long id){
-//        Info info = infoRepository.getById(id);
-//        return new BDayDto(info);
-//    }
-
-    //TMI 저장
-    @Override
-    public Long addTMI(String text, Long id) {
-        BDay day = repository.getById(id);
-        return infoRepository.save(new Info(text, day)).getId();
-    }
 
     //이름 생일 저장
     @Override
@@ -45,14 +35,45 @@ public class BDayServiceImpl implements BDayService{
     @Override
     public BDayDto getInfo(Long id) {
         BDay day = repository.getById(id);
-        return new BDayDto(day.getId(), day.getName(), day.getMonth(), day.getDay());
+        return new BDayDto(day);
+//        return new BDayDto(day.getId(), day.getName(), day.getMonth(), day.getDay());
     }
 
-    //테스트 저장
+    //TMI 저장
+    @Override
+    public Long addTmi(String text, Long id) {
+        BDay day = repository.getById(id);
+        return infoRepository.save(new Info(text, day)).getId();
+    }
+
+    //tmi 리스트
+/*
+    @Override
+    public List<BDayDto> getTmiById(Long id) {
+        return infoRepository.getTmiById(id);
+    }
+*/
+
+    //tmi 페이징
+    @Override
+    public Slice<BDayDto> getTmi(Pageable pageable, Long id) {
+        return infoRepository.getTmi(pageable, id);
+    }
+
+
+    //테스트 생일 저장
     @Override
     @Transactional
     public Long saveTest(BDay bDay) {
         return repository.save(new BDay(bDay.getName(), bDay.getMonth(), bDay.getDay()))
+                .getId();
+    }
+
+    //테스트 tmi 저장
+    @Override
+    public Long addTmiTest(Info info, Long id) {
+        BDay day = repository.getById(id);
+        return infoRepository.save(new Info(info.getText(), day))
                 .getId();
     }
 

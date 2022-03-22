@@ -21,11 +21,11 @@ public class Info {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "day_id")
-    private BDay day;
+    private BDay bDay;
 
 
-    public Info (String text, BDay day) {
+    public Info (String text, BDay bDay) {
         this.text = text;
-        this.day = day;
+        this.bDay = bDay;
     }
 }

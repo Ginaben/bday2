@@ -23,7 +23,7 @@ public class BDay extends BaseTimeEntity {
     private String month;
     private String day;
 
-    @OneToMany(mappedBy = "day", cascade = ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "bDay", cascade = ALL, orphanRemoval = true)
     private List<Info> infoList = new ArrayList<>();
 
 

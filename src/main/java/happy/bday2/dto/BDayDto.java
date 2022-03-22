@@ -20,33 +20,42 @@ public class BDayDto {
     private String month;
     private String day;
 
-    private BDay bday;
+    private BDay bDay;
 
     private Long tid;
     @NotBlank
     private String text;
 
-    private List<Info> tmiList = new ArrayList<>();
+//    private List<Info> tmiList = new ArrayList<>();
+
 
     public BDayDto(){}
 
-    public BDayDto(Long id, String name, String month, String day){
-        this.id = id;
-        this.name = name;
-        this.month = month;
-        this.day = day;
+    public BDayDto(Long tid, String text, BDay bDay) {
+        this.tid = tid;
+        this.text = text;
+        this.bDay = bDay;
+    }
+
+//    public BDayDto(Long id, String name, String month, String day){
+//        this.id = id;
+//        this.name = name;
+//        this.month = month;
+//        this.day = day;
+//    }
+
+    public BDayDto(BDay bDay){
+        this.id = bDay.getId();
+        this.name = bDay.getName();
+        this.month = bDay.getMonth();
+        this.day = bDay.getDay();
     }
 
 //    public BDayDto(Info info) {
 //        this.tid = info.getId();
 //        this.text = info.getText();
-//        this.bday = info.getDay();
+//        this.bDay = info.getBDay();
 //    }
 
-    public BDayDto(Long tid, String text, BDay bDay) {
-        this.tid = tid;
-        this.text = text;
-        this.bday = bDay;
-    }
 
 }

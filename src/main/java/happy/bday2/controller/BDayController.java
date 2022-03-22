@@ -1,9 +1,11 @@
 package happy.bday2.controller;
 
 import happy.bday2.dto.BDayDto;
+import happy.bday2.paging.RequestPageSortDto;
 import happy.bday2.service.BDayService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -35,15 +37,25 @@ public class BDayController {
 
     //디테일
     @GetMapping("/detail/{id}")
-    public String detail(@PathVariable("id") Long id, Model model){
+    public String detail(@PathVariable("id") Long id, Model model,
+                         RequestPageSortDto requestPageDto){
         model.addAttribute("date",service.getInfo(id));
+
+        //리스트
+//        model.addAttribute("tmi",service.getTmiById(id));
+
+        //페이징
+        Pageable pageable = requestPageDto.getPageableSort();
+        model.addAttribute("tmi",service.getTmi(pageable, id));
+
+
         return "detail";
     }
 
     @PostMapping("/addTmi/{id}")
     public String addTmi(@PathVariable("id") Long id, Model model, HttpServletRequest request){
         String text = request.getParameter("text");
-        service.addTMI(text,id);
+        service.addTmi(text,id);
 
         return "detail :: #list-table";
     }
