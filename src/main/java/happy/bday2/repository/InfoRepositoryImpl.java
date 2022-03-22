@@ -36,6 +36,8 @@ public class InfoRepositoryImpl implements InfoRepositoryCustom {
                 .from(info, info)
                 .innerJoin(info.bDay, bDay).on(bDay.id.eq(info.bDay.id))
                 .where(info.bDay.id.eq(id))
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
                 .fetch();
 
         List<Info> countQuery = queryFactory

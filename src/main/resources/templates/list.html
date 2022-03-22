@@ -1,1 +1,18 @@
 <!DOCTYPE html>
+<block xmlns:th="http://www.w3.org/1999/xhtml">
+    <div>
+        <table>
+            <tr>
+                <th>이름</th>
+                <th>생월</th>
+                <th>생일</th>
+            </tr>
+
+            <tr th:each="list: ${search}">
+                <td>[[${list.name}]]</td>
+                <td>[[${list.month}]]</td>
+                <td>[[${list.day}]]</td>
+            </tr>
+        </table>
+    </div>
+</block>

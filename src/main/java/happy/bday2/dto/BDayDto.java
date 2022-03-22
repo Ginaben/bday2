@@ -31,19 +31,16 @@ public class BDayDto {
 
     public BDayDto(){}
 
-    public BDayDto(Long tid, String text, BDay bDay) {
-        this.tid = tid;
-        this.text = text;
-        this.bDay = bDay;
+
+    //day db (detail) or 검색
+    public BDayDto(Long id, String name, String month, String day){
+        this.id = id;
+        this.name = name;
+        this.month = month;
+        this.day = day;
     }
 
-//    public BDayDto(Long id, String name, String month, String day){
-//        this.id = id;
-//        this.name = name;
-//        this.month = month;
-//        this.day = day;
-//    }
-
+    //day db (detail)
     public BDayDto(BDay bDay){
         this.id = bDay.getId();
         this.name = bDay.getName();
@@ -51,11 +48,19 @@ public class BDayDto {
         this.day = bDay.getDay();
     }
 
+    //tmi 리스트
 //    public BDayDto(Info info) {
 //        this.tid = info.getId();
 //        this.text = info.getText();
 //        this.bDay = info.getBDay();
 //    }
+
+    //tmi 리스트
+    public BDayDto(Long tid, String text, BDay bDay) {
+        this.tid = tid;
+        this.text = text;
+        this.bDay = bDay;
+    }
 
 
 }

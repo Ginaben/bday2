@@ -1,11 +1,14 @@
 package happy.bday2.controller;
 
 import happy.bday2.dto.BDayDto;
+import happy.bday2.dto.search.SearchCondition;
+import happy.bday2.dto.search.SearchType;
 import happy.bday2.paging.RequestPageSortDto;
 import happy.bday2.service.BDayService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,7 +27,11 @@ public class BDayController {
 
     //인덱스
     @GetMapping({"","/"})
-    public String index (@ModelAttribute("day") BDayDto dto){
+    public String index (@ModelAttribute("day") BDayDto dto,
+                         RequestPageSortDto requestPageDto, Model model,
+                         SearchType searchType, String keyword){
+
+        searchDayList(requestPageDto, model, searchType, keyword);
         return "index";
     }
 
@@ -59,4 +66,37 @@ public class BDayController {
 
         return "detail :: #list-table";
     }
+
+    //검색
+    @PostMapping({"","/"})
+    public String searchList(@RequestParam(value = "searchType", required = false) SearchType searchType,
+                             @RequestParam(value = "keyword", required = false) String keyword,
+                             RequestPageSortDto requestPageDto, Model model) {
+
+        searchDayList(requestPageDto, model, searchType, keyword);
+        return "redirect:/list";
+    }
+
+    @GetMapping("/list")
+    public String list(RequestPageSortDto requestPageDto, Model model,
+                       SearchType searchType, String keyword) {
+
+        searchDayList(requestPageDto, model, searchType, keyword);
+        return "/list";
+
+    }
+
+    //검색 페이징
+    private void searchDayList(RequestPageSortDto requestPageDto, Model model, SearchType searchType, String keyword) {
+
+        Pageable pageable = requestPageDto.getPageableSort(Sort.by("month").descending());
+
+        model.addAttribute("searchType", searchType);
+        model.addAttribute("keyword", keyword);
+
+            if (searchType != null) {
+                model.addAttribute("search", service.searchDay(pageable, new SearchCondition(keyword, searchType)));
+            }
+    }
+
 }

@@ -1,6 +1,7 @@
 package happy.bday2.service;
 
 import happy.bday2.dto.BDayDto;
+import happy.bday2.dto.search.SearchCondition;
 import happy.bday2.entity.BDay;
 import happy.bday2.entity.Info;
 import happy.bday2.repository.BDayRepository;
@@ -46,6 +47,20 @@ public class BDayServiceImpl implements BDayService{
         return infoRepository.save(new Info(text, day)).getId();
     }
 
+    //tmi 페이징
+    @Override
+    public Slice<BDayDto> getTmi(Pageable pageable, Long id) {
+        return infoRepository.getTmi(pageable, id);
+    }
+
+
+    //생일 검색 페이징
+    @Override
+    public Slice<BDayDto> searchDay(Pageable pageable, SearchCondition condition) {
+        return repository.searchDay(pageable, condition);
+    }
+
+
     //tmi 리스트
 /*
     @Override
@@ -53,13 +68,6 @@ public class BDayServiceImpl implements BDayService{
         return infoRepository.getTmiById(id);
     }
 */
-
-    //tmi 페이징
-    @Override
-    public Slice<BDayDto> getTmi(Pageable pageable, Long id) {
-        return infoRepository.getTmi(pageable, id);
-    }
-
 
     //테스트 생일 저장
     @Override
@@ -76,5 +84,6 @@ public class BDayServiceImpl implements BDayService{
         return infoRepository.save(new Info(info.getText(), day))
                 .getId();
     }
+
 
 }

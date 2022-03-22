@@ -23,9 +23,11 @@ $(".addBtn").on("click", function(){
         }
     })
         .done(function (fragment) {
-            $("#list-table").replaceWith(fragment);
+//            $("#list-table").replaceWith(fragment);
             $("#text").val("");
             check.html("");
+            self.location.reload();
+
         });
 }); //addInfo end
 

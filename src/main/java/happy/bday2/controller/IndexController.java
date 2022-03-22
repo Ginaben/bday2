@@ -21,6 +21,6 @@ public class IndexController {
 //    @GetMapping("/detail")
 //    public void detail(){}
 
-    @GetMapping("/list")
-    public void list(){}
+//    @GetMapping("/list")
+//    public void list(){}
 }

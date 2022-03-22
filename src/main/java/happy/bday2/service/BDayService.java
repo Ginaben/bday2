@@ -1,6 +1,7 @@
 package happy.bday2.service;
 
 import happy.bday2.dto.BDayDto;
+import happy.bday2.dto.search.SearchCondition;
 import happy.bday2.entity.BDay;
 import happy.bday2.entity.Info;
 import org.springframework.data.domain.Pageable;
@@ -18,7 +19,9 @@ public interface BDayService {
 //    List<BDayDto> getTmiById(Long id);
     Slice<BDayDto> getTmi(Pageable pageable, Long id);
 
-    Long saveTest(BDay bDay);
+    Slice<BDayDto> searchDay(Pageable pageable, SearchCondition condition);
+
+        Long saveTest(BDay bDay);
     Long addTmiTest(Info info, Long id);
 
     }
