@@ -4,6 +4,8 @@ jdk:
 branches:
   only:
     - main
+before_install:
+  - chmod +x gradlew
 
 # travis ci서버의 home
 cache:
