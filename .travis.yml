@@ -12,13 +12,9 @@ cache:
   directories:
     - "$HOME/.m2/repository"
     - "$HOME/.gradle"
-echo "디렉토리스"
 
 script:
   - "./gradlew clean build"
-  echo "빌드 클린업"
-  echo "?????"
-
 
 # ci 실행 완료시 메일로 알람
 notifications:
