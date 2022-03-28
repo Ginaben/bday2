@@ -40,7 +40,7 @@ dependencies {
 	implementation "com.querydsl:querydsl-jpa:5.0.0"
 	implementation "com.querydsl:querydsl-apt:5.0.0"
 	implementation 'junit:junit:4.13.1'
-//	implementation group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '3.0.3'
+	implementation group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '3.0.3'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
 
 	testImplementation ('org.springframework.boot:spring-boot-starter-test') {
