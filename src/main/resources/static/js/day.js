@@ -13,7 +13,7 @@ $(".addBtn").on("click", function(){
     }
 
     $.ajax({
-        url: "/bday2/addTmi/" + mno,
+        url: "/addTmi/" + mno,
         method: "post",
         contentType: "application/x-www-form-urlencoded; charset=UTF-8",
         data: {
