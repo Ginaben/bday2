@@ -115,7 +115,7 @@ public class BDayController {
                        SearchType searchType, String keyword) {
 
         searchDayList(requestPageDto, model, searchType, keyword);
-        return "/list";
+        return "list";
 
     }
 
