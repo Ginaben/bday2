@@ -28,7 +28,7 @@ public class BDayController {
     private final BDayService service;
 
     //인덱스
-    @GetMapping("")
+    @GetMapping({"","/"})
     public String index (@ModelAttribute("day") BDayDto dto,
                          RequestPageSortDto requestPageDto, Model model,
                          SearchType searchType, String keyword){
