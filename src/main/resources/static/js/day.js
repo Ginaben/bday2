@@ -65,7 +65,7 @@ $(".deleteAll").on("click", function(){
     })
         .done(function (data) {
         alert("삭제되었습니다");
-        location=index;
+        location="/";
         });
 }); //deleteAll end
 
