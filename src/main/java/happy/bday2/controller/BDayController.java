@@ -70,8 +70,7 @@ public class BDayController {
         Pageable pageable = requestPageDto.getPageableSort();
         model.addAttribute("tmi",service.getTmi(pageable, id));
 
-
-        return "detail" + id;
+        return "detail";
     }
 
     //tmi저장
