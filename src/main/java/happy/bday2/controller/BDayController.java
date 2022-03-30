@@ -57,8 +57,8 @@ public class BDayController {
         return new ResponseEntity<>(id, HttpStatus.OK);
     }
 
-    //디테일
-    @GetMapping("/detail/{id}")
+    //디테일 (배포시 getmapping url에 / 빼야함..
+    @GetMapping("detail/{id}")
     public String detail(@PathVariable("id") Long id, Model model,
                          RequestPageSortDto requestPageDto){
         model.addAttribute("date",service.getInfo(id));
