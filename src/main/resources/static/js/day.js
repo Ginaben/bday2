@@ -36,7 +36,7 @@ $(".deleteInfo").on("click", function(){
     let id = $(this).parent().children(".id").text();
 
     $.ajax({
-        url: "/bday2/deleteTmi/" + tno,
+        url: "/deleteTmi/" + tno,
         method: "delete",
         contentType: "application/x-www-form-urlencoded; charset=UTF-8",
         data: {
@@ -56,7 +56,7 @@ $(".deleteAll").on("click", function(){
     let id = $("#id").text();
 
     $.ajax({
-        url: "/bday2/delete/" + id,
+        url: "/delete/" + id,
         method: "delete",
         contentType: "application/x-www-form-urlencoded; charset=UTF-8",
         data: {
@@ -65,7 +65,7 @@ $(".deleteAll").on("click", function(){
     })
         .done(function (data) {
         alert("삭제되었습니다");
-        location="/bday2/";
+        location=index;
         });
 }); //deleteAll end
 
