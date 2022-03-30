@@ -14,7 +14,7 @@
 
     <tr class="inline" style="margin-bottom:20px;">
         <td>
-            <form th:action="@{'/add'}" method="post" th:object="${day}">
+            <form th:action="@{/add}" method="post" th:object="${day}">
                 <input type="text" class="idxInput" th:field="*{name}" placeholder="이름"><br>
                 <input type="text" class="idxInput" th:field="*{month}" placeholder="월"><br>
                 <input type="text" class="idxInput" th:field="*{day}" placeholder="일"><br>
