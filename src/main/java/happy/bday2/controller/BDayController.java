@@ -96,8 +96,6 @@ public class BDayController {
         return "detail :: #list-table";
     }
 
-
-
     //검색
     @PostMapping({"","/"})
     public String searchList(@RequestParam(value = "searchType", required = false) SearchType searchType,
