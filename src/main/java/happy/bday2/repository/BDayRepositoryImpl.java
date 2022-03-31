@@ -54,7 +54,7 @@ public class BDayRepositoryImpl implements BDayRepositoryCustom{
 
     //검색조건
     private BooleanExpression eqName(String name) {
-        return StringUtils.hasText(name) ? bDay.name.like(name) : null;
+        return StringUtils.hasText(name) ? bDay.name.containsIgnoreCase(name) : null;
     }
 
     private BooleanExpression eqMonth(String month) {
