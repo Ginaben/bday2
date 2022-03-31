@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<block xmlns:th="http://www.w3.org/1999/xhtml">
+<block xmlns:th="http://www.w3.org/1999/xhtml" class="blockWrap">
 
     <link th:href="@{/css/day.css}" rel="stylesheet"/>
 
-    <h1>당신의 TMI</h1>
+    <h1>당신의 <br><span class="title-word title-word-1">T</span><span class="title-word title-word-2">M</span><span class="title-word title-word-3">I</span></h1>
 
     <table>
 <!--    <tr>-->
@@ -15,18 +15,28 @@
     <tr class="inline" style="margin-bottom:20px;">
         <td>
             <form th:action="@{/add}" method="post" th:object="${day}">
-                <input type="text" class="idxInput" th:field="*{name}" placeholder="이름"><br>
-                <input type="text" class="idxInput" th:field="*{month}" placeholder="월"><br>
-                <input type="text" class="idxInput" th:field="*{day}" placeholder="일"><br>
-                <span><button>등록하기</button></span>
+                <div class="left-box">
+                  <input type="text" class="idxInput" th:field="*{name}" placeholder="이름"><br>
+                  <div class="bdbox">
+                    <input type="text" class="idxInput idxmon" th:field="*{month}" placeholder="월">
+                    <input type="text" class="idxInput idxday" th:field="*{day}" placeholder="일">
+                  </div>
+                </div>
+
+                <div class="right-box">
+                  <div class="btnbox">
+                    <span><button>등록하기</button></span>
+                  </div>
+                </div>
             </form>
         </td>
     </tr>
 
     <tr>
         <td>
-            <div>
+            <div class="schBox">
                 <form th:method="get" th:action="@{/list}">
+                  <div class="left-box">
                     <select class="dropdown inline" name="searchType">
                         <option th:each="searchType : ${T(happy.bday2.dto.search.SearchType).values()}"
                                 th:value="${searchType}" th:text="${searchType.searchName}"></option>
@@ -35,9 +45,12 @@
                     <div class="search-bar inline">
                         <input id="search-input" name="keyword" th:value="${keyword}">
                     </div>
+                  </div>
+                  <div class="right-box">
                     <button class="btn_search btn" type="submit">
                         검색하기
                     </button>
+                  </div>
                 </form>
 
             </div>

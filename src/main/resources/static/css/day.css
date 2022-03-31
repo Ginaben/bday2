@@ -24,11 +24,17 @@ table {
 }
 
 input {
-    height: 20px;
+    height: 42px;
 }
 
 .idxInput {
-    margin-bottom: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    color: #212121;
 }
 
 select {
@@ -59,3 +65,51 @@ table, th, td {
    margin: 5px;
    text-align: center;
 }
+
+
+/** IJ - 2022.03.31 **/
+.blockWrap{position: absolute;top:50%;left:50%;transform: translate(-50%, -50%);text-align: center;background: #fff;padding: 30px 35px 50px;border-radius: 10px;border: 1px solid #ccc;}
+.blockWrap h1 span{font-size: 50px;}
+.idxmon{width: 105px;display: inline-block;}
+.idxday{width: 105px;display: inline-block;}
+.left-box{display: inline-block;vertical-align: top;}
+.right-box{display: inline-block;vertical-align: top;}
+.btnbox span button{transition: all ease .3s;border: 1px solid #3f51b5;color: #3f51b5;height: 95px;border-radius: 7px;padding: 10px 20px;box-sizing: border-box;font-size: 16px;margin-left: 5px;background: none;cursor: pointer;}
+.btnbox span button:hover{background:#3f51b5;color:#fff;}
+.title-word {
+  animation: color-animation 3s linear infinite;
+}
+
+.title-word-1 {
+  --color-1: #DF8453;
+  --color-2: #3D8DAE;
+  --color-3: #E4A9A8;
+}
+
+.title-word-2 {
+  --color-1: #DBAD4A;
+  --color-2: #ACCFCB;
+  --color-3: #17494D;
+}
+
+.title-word-3 {
+  --color-1: #ACCFCB;
+  --color-2: #E4A9A8;
+  --color-3: #ACCFCB;
+}
+
+@keyframes color-animation {
+  0%    {color: var(--color-1)}
+  32%   {color: var(--color-1)}
+  33%   {color: var(--color-2)}
+  65%   {color: var(--color-2)}
+  66%   {color: var(--color-3)}
+  99%   {color: var(--color-3)}
+  100%  {color: var(--color-1)}
+}
+
+.schBox{padding-top:40px;margin-top:10px;border-top: 1px dashed #bbb;}
+.schBox .left-box select{display: block;border: 1px solid #ccc;border-radius: 5px;font-size: 16px;margin-bottom: 10px;padding: 5px 10px;box-sizing: border-box;color: #212121;height: 42px;width:100%;}
+.schBox .btn_search{transition: all ease .3s;border: 1px solid #009688;color: #009688;height: 95px;border-radius: 7px;padding: 10px 20px;box-sizing: border-box;font-size: 16px;margin-left: 5px;background: none;cursor: pointer;}
+.schBox .btn_search:hover{background:#009688;color:#fff;}
+.schBox input{border: 1px solid #ccc;border-radius: 5px;font-size: 16px;margin-bottom: 10px;padding: 5px 10px;box-sizing: border-box;color: #212121;}
