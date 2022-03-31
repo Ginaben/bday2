@@ -39,7 +39,7 @@ public class BDayRepositoryImpl implements BDayRepositoryCustom{
                 ))
                 .from(bDay, bDay)
                 .where(isSearch(condition.getSearchType(), condition.getContent()))
-                .orderBy(bDay.month.asc())
+                .orderBy(bDay.name.asc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
